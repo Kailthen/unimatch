@@ -1,0 +1,102 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Depth image + pose",
+            "type": "python",
+            "request": "launch",
+            "program": "main_depth.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--inference_dir","demo/depth-scannet",
+                "--output_path", "output/gmdepth-scale1-regrefine1-scannet",
+                "--resume", "pretrained/gmdepth-scale1-regrefine1-resumeflowthings-scannet-90325722.pth",
+                "--reg_refine",
+                "--num_reg_refine", "1",
+                "--pred_bidir_depth"
+            ]
+        },
+        {
+            "name": "Python: Stereo",
+            "type": "python",
+            "request": "launch",
+            "program": "main_stereo.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--inference_dir", "x",
+                "--inference_dir_left", "demo/kitti-stereo-2015/training/image_2",
+                "--inference_dir_right", "demo/kitti-stereo-2015/training/image_3",
+                "--output_path", "output/stereo",
+                "--resume", "pretrained/gmstereo-scale2-regrefine3-resumeflowthings-kitti15-04487ebf.pth",
+                "--padding_factor", "32",
+                "--upsample_factor", "4",
+                "--num_scales", "2",
+                "--attn_type", "self_swin2d_cross_swin1d",
+                "--attn_splits_list", "2", "8",
+                "--corr_radius_list", "-1", "4",
+                "--prop_radius_list", "-1", "1",
+                "--reg_refine",
+                "--num_reg_refine", "3",
+                "--save_pfm_disp",
+                "--pred_bidir_disp"
+            ]
+        },
+        {
+            "name": "Python: Stereo Infer",
+            "type": "python",
+            "request": "launch",
+            "program": "main_stereo.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--inference_dir", "x",
+                "--inference_dir_left", "/media/work/2t/datasets/kittiraw_parsed/20111003/0042_out/cam02/data",
+                "--inference_dir_right", "/media/work/2t/datasets/kittiraw_parsed/20111003/0042_out/cam03/data",
+                "--output_path", "/media/work/2t/datasets/kittiraw_parsed/20111003/0042_out/cam_stereo_02_03_unimatch/",
+                "--resume", "pretrained/gmstereo-scale2-regrefine3-resumeflowthings-kitti15-04487ebf.pth",
+                "--padding_factor", "32",
+                "--upsample_factor", "4",
+                "--num_scales", "2",
+                "--attn_type", "self_swin2d_cross_swin1d",
+                "--attn_splits_list", "2", "8",
+                "--corr_radius_list", "-1", "4",
+                "--prop_radius_list", "-1", "1",
+                "--reg_refine",
+                "--num_reg_refine", "3",
+                "--save_pfm_disp",
+                "--pred_bidir_disp",
+                "--vis"
+            ]
+        },
+        {
+            "name": "Python: Stereo demo",
+            "type": "python",
+            "request": "launch",
+            "program": "main_stereo.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                "--inference_dir", "demo/stereo-middlebury",
+                "--output_path", "tmp",
+                "--resume", "pretrained/gmstereo-scale2-regrefine3-resumeflowthings-middleburyfthighres-a82bec03.pth",
+                "--padding_factor", "32",
+                "--upsample_factor", "4",
+                "--num_scales", "2",
+                "--attn_type", "self_swin2d_cross_swin1d",
+                "--attn_splits_list", "2", "8",
+                "--corr_radius_list", "-1", "4",
+                "--prop_radius_list", "-1", "1",
+                "--reg_refine",
+                "--num_reg_refine", "3",
+                "--save_pfm_disp",
+                "--pred_bidir_disp",
+                "--vis"
+            ]
+        }
+    ]
+}

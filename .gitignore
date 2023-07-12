@@ -1,0 +1,19 @@
+
+# Build artifacts
+**/package-lock.json
+*.pyc
+__pycache__
+.cache/
+._*
+.DS_Store
+.vscode
+.idea
+*.egg-info/
+*.ipynb_checkpoints/
+*.py[cod]
+*.bak
+node_modules/
+static/
+*.old*
+dist/
+tmp/
