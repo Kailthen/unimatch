@@ -118,6 +118,7 @@ def get_args_parser():
                         help='save predicted disparity as .pfm format')
 
     parser.add_argument('--debug', action='store_true')
+    parser.add_argument('--vis', default=False, action='store_true')
 
     return parser
 
@@ -328,6 +329,8 @@ def main(args):
         return
 
     if args.inference_dir or (args.inference_dir_left and args.inference_dir_right):
+        if args.inference_dir_left is not None:
+            args.inference_dir = None
         inference_stereo(model_without_ddp,
                          inference_dir=args.inference_dir,
                          inference_dir_left=args.inference_dir_left,
@@ -343,6 +346,7 @@ def main(args):
                          pred_bidir_disp=args.pred_bidir_disp,
                          pred_right_disp=args.pred_right_disp,
                          save_pfm_disp=args.save_pfm_disp,
+                         vis=args.vis
                          )
 
         return
